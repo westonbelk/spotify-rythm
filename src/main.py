@@ -44,15 +44,16 @@ def main():
             return
         
         if message.content.startswith("!play https://open.spotify.com/"):
-            command_url = message.content.split()[1]
-            rythm_bot_commands = spotify_client.parse_link(command_url)
-
             channel = message.author.voice.channel
             voice_context = await channel.connect()
-            for command in rythm_bot_commands:
-                time.sleep(2)
-                await message.channel.send(command)
-                time.sleep(2)
+
+            for command_url in message.content.split()[1:]:
+                rythm_bot_commands = spotify_client.parse_link(command_url)
+                for command in rythm_bot_commands:
+                    time.sleep(2)
+                    await message.channel.send(command)
+                    time.sleep(2)
+                    
             await voice_context.disconnect()
 
     logger.info("Starting discord client.")
