@@ -42,12 +42,13 @@ def main():
     async def on_message(message):
         if message.author == discord_client.user:
             return
-        
-        if message.content.lower().startswith("!play https://open.spotify.com/"):
+
+        msg = message.content.lower()
+        if msg.startswith("!play https://open.spotify.com/"):
             channel = message.author.voice.channel
             voice_context = await channel.connect()
 
-            for command_url in message.content.split()[1:]:
+            for command_url in msg.split()[1:]:
                 rythm_bot_commands = spotify_client.parse_link(command_url)
                 for command in rythm_bot_commands:
                     time.sleep(2)

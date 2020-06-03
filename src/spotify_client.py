@@ -32,7 +32,7 @@ class Spotify_Client:
 
 
     def _try_url_parse(self, url):
-        parsed = urlparse(url).lower()
+        parsed = urlparse(url)
         tracklist = []
         if url.startswith("https://open.spotify.com/playlist/"):
             playlist_id = "spotify:playlist:" + parsed.path.split("/playlist/")[1]
