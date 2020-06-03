@@ -43,7 +43,7 @@ def main():
         if message.author == discord_client.user:
             return
         
-        if message.content.startswith("!play https://open.spotify.com/"):
+        if message.content.lower().startswith("!play https://open.spotify.com/"):
             channel = message.author.voice.channel
             voice_context = await channel.connect()
 
